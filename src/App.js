@@ -2,8 +2,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
-// 載入3D 模型:dog
-// 用free3D 
+// 用free3D:載入3D 模型:dog
+// 
 const App = () => {
 
   // 產生一個場景
@@ -53,7 +53,7 @@ const App = () => {
   let axes = new THREE.AxesHelper(20) // 參數為座標軸長度
   scene.add(axes)
   //載入模型 
-  objLoader.load('/models/scene.gltf', (obj) => {
+  objLoader.load('/models/13466_Canaan_Dog_v1_L3.obj', (obj) => {
     model = obj;
 
     // 給模型上色 結果無法上色
