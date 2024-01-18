@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Three.js 簡介
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 場景（Scene）：
 
-## Available Scripts
+容納 3D 物體的容器，包含了幾何形狀組成的物體、光源和相機，作為場景圖 (Scene Graph)樹狀結構的根結點，描述該 Scene 所有物體的
 
-In the project directory, you can run:
+2. 相機（Camera）：
 
-### `npm start`
+相機是場景中的眼睛，定義了場景的觀察位置和方向。3D 場景比較常用的相機叫做 PerspectiveCamera (透視相機)，它會模擬人的視覺方式，當物體距離相機較近時物體會變大，距離變遠時物體則變小。
+以相機為出發點，根據視角(fov)、 畫面長寬比（aspect）以及遠(far)近(near)平面之間的比較，產出「視錐」模型，用來判斷當前視線範圍內可視的物體以及視線遮擋因素，以此決定要渲染場景裡的哪些物體。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. 渲染器（Renderer）：
 
-### `npm test`
+渲染器負責將 Scene 和 Camera 結合渲染成最終的圖像，它會將 Camera 視錐中的三維場景渲染成一個二維圖片顯示在畫布上。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 場景（Scene）包含的元素：
 
-### `npm run build`
+1. 幾何體（Geometry）：
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+描述物體的形狀，例如球體、立方體、平面等等。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. 材質（Material）：
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+材質決定了物體的表面外觀，例如顏色以及反射，也可以搭配紋理(Texture) 將圖片貼附在物體的表面。
 
-### `npm run eject`
+3. 網格 (Mesh) ：
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Geometry 加上 Material 所結合出的物體，多個 Mesh 可能會使用相同的 Geometry 跟 Material 的資料。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. 光源（Light）：
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+可以影響物體的顏色、陰影和反射等效果，讓場景更加真實。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+座標定位
+Three.js 使用右手座標系(Right-Handed Coordinate Systems)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### position vs rotation 的差別
+# position:
+用於設置物體的位置，即在三維空間中的坐標位置。這影響物體的整體位置，以 X、Y 和 Z 軸的坐標表示。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+// 設定正方形的位置
+cube.position.set(0,0,3)
 
-### Code Splitting
+# rotation:
+用於設置物體的旋轉。它影響物體的朝向，以弧度或歐拉角（Euler angles）的形式表示。旋轉通常包括繞 X、Y 和 Z 軸的旋轉。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+# 可參考這篇文章
+https://blog.twjoin.com/%E8%AA%8D%E8%AD%98-three-js-6eb329e16c97
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://ithelp.ithome.com.tw/articles/10199699
