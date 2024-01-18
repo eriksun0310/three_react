@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// 載入3D 模型:dog
-// 用free3D 
+// 用 Sketchfab 來載入載入3D 模型:菜市場(不知道為甚麼模型出不來)
 const App = () => {
 
   // 產生一個場景
@@ -46,33 +46,15 @@ const App = () => {
 
 
 
-  const objLoader = new OBJLoader() 
-  let model
+  const objLoader = new GLTFLoader() 
+
 
   // 座標軸助手 (X 軸為紅色。Y 軸為綠色。Z 軸是藍色的)
   let axes = new THREE.AxesHelper(20) // 參數為座標軸長度
   scene.add(axes)
   //載入模型 
-  objLoader.load('/models/scene.gltf', (obj) => {
-    model = obj;
-
-    // 給模型上色 結果無法上色
-    // const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
-    // model.traverse((child) => {
-    //   if (child instanceof THREE.Mesh) {
-    //     child.material = material;
-    //     console.log('child.material ==> ', child.material);
-    //   }
-    // });
-  
-    scene.add(model);
-  
-    // 設定模型的位置
-    model.position.set(0, 0, 3);
-    model.rotation.x = 150;
-    model.rotation.y = 0;
-    model.rotation.z = 150;
-  
+  objLoader.load('/models/scene.gltf', (gltf) => {
+    scene.add( gltf.scene );
     animate();
   });
  
@@ -81,11 +63,6 @@ const App = () => {
   const animate = ()=>{
     // 循環觸發
     requestAnimationFrame(animate)
-
-    // 設定dog轉動效果
-    model.rotation.y += 0.01;
-    model.rotation.x += 0.01;
-
     renderer.render(scene, camera)
   }
  

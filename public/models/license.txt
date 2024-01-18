@@ -1,0 +1,11 @@
+Model Information:
+* title:	Vegetable Market
+* source:	https://sketchfab.com/3d-models/vegetable-market-29fa77e33dfa4e22a06a71412048b3cc
+* author:	anastasiaremezova (https://sketchfab.com/anastasiaremezova)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Vegetable Market" (https://sketchfab.com/3d-models/vegetable-market-29fa77e33dfa4e22a06a71412048b3cc) by anastasiaremezova (https://sketchfab.com/anastasiaremezova) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

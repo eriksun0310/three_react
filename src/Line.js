@@ -4,7 +4,7 @@ import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
 // 載入3D 模型:dog
 // 用free3D 
-const App = () => {
+const Line = () => {
 
   // 產生一個場景
   const scene = new THREE.Scene()
@@ -29,9 +29,9 @@ const App = () => {
   renderer.setSize(window.innerWidth, window.innerHeight) //場景大小
 
   // 預設背景顏色
-  renderer.setClearColor(0x7B7B7B, 1.0) 
+  // renderer.setClearColor(0x7B7B7B, 1.0) 
   // 陰影效果 (之後在物體與光源的互動才有辦法產生影子)
-  renderer.shadowMap.enabled = true
+  // renderer.shadowMap.enabled = true
 
 
   // 將渲染器的DOM 綁到網頁上
@@ -43,52 +43,40 @@ const App = () => {
   
   controls.update()
 
+  const material = new THREE.LineBasicMaterial({ color: 0x0000ff})
+
+  const points = []
+
+  points.push( new THREE.Vector3(-10,0,0))
+  points.push( new THREE.Vector3(0,10,0))
+  points.push( new THREE.Vector3(10,0,0))
+
+
+  const geometry = new THREE.BufferGeometry().setFromPoints(points)
+
+  const line = new THREE.Line(geometry, material)
+
+
+  scene.add(line)
 
 
 
-  const objLoader = new OBJLoader() 
-  let model
 
-  // 座標軸助手 (X 軸為紅色。Y 軸為綠色。Z 軸是藍色的)
-  let axes = new THREE.AxesHelper(20) // 參數為座標軸長度
-  scene.add(axes)
-  //載入模型 
-  objLoader.load('/models/scene.gltf', (obj) => {
-    model = obj;
-
-    // 給模型上色 結果無法上色
-    // const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
-    // model.traverse((child) => {
-    //   if (child instanceof THREE.Mesh) {
-    //     child.material = material;
-    //     console.log('child.material ==> ', child.material);
-    //   }
-    // });
-  
-    scene.add(model);
-  
-    // 設定模型的位置
-    model.position.set(0, 0, 3);
-    model.rotation.x = 150;
-    model.rotation.y = 0;
-    model.rotation.z = 150;
-  
-    animate();
-  });
- 
-
- //設定動畫
   const animate = ()=>{
     // 循環觸發
     requestAnimationFrame(animate)
 
     // 設定dog轉動效果
-    model.rotation.y += 0.01;
-    model.rotation.x += 0.01;
+    // model.rotation.y += 0.01;
+    // model.rotation.x += 0.01;
 
     renderer.render(scene, camera)
   }
  
+  animate();
+ //設定動畫
+
+ 
 };
 
-export default App;
+export default Line;
