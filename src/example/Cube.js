@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 
 // 正方形 以及 一個地板
-const App = () => {
+const Cube = () => {
 
   // 產生一個場景
   const scene = new THREE.Scene()
@@ -43,10 +43,10 @@ const App = () => {
 
 
   // 設定軌道控制器, 讓相機可以環繞觀察場景
-  const controls = new OrbitControls(camera, renderer.domElement)
+  new OrbitControls(camera, renderer.domElement)
   
   // 自動旋轉 須設定 update
-  controls.update()
+  // controls.update()
 
   // 產生平面物體
   const planeGeometry = new THREE.PlaneGeometry(6,6)
@@ -65,12 +65,12 @@ const App = () => {
   scene.add(plane)
 
   // 產生一個藍色正方形物體
-  // 宣告形狀
+  //建立一個形狀, 用來定義物體的形狀為 長寬高為1 的正方體
   const cubeGeometry = new THREE.BoxGeometry(1,1,1)
-  //材質
+  // 建立一個材質, 可想像一個物體所穿的衣服, 設定材質顏色為
   const cubeMaterial = new THREE.MeshBasicMaterial({ color:'#429ef5'})
 
-  // mesh 建立網格物件
+  // Mesh(3D物件): 依據前兩者, 建立物件
   const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
 
 
@@ -78,18 +78,19 @@ const App = () => {
   cube.position.set(0,0,3)
   scene.add(cube)
 
-  //設定動畫
+  //設定動畫(很像setInterval的函式。每一幀都會執行這個函式)
   const animate = ()=>{
     // 循環觸發
+    // 它每一幀執行animate()
     requestAnimationFrame(animate)
 
     // 設定正方形轉動效果
     cube.rotation.x += 0.01
     cube.rotation.y += 0.01
-
+	  // 每一幀，場景物件都會被鏡頭捕捉
     renderer.render(scene, camera)
   }
   animate()
 };
 
-export default App;
+export default Cube;

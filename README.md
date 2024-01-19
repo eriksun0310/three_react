@@ -29,11 +29,33 @@
 Geometry 加上 Material 所結合出的物體，多個 Mesh 可能會使用相同的 Geometry 跟 Material 的資料。
 
 4. 光源（Light）：
+1. AmbientLight 環境光: new THREE.AmbientLight(0xffffff, 2)
+(光的顏色, 光的強度)
 
 可以影響物體的顏色、陰影和反射等效果，讓場景更加真實。
 
 座標定位
 Three.js 使用右手座標系(Right-Handed Coordinate Systems)
+
+
+# 欧拉角（Euler Angles）: rotation即是一個歐拉角物件
+setFromVector3() ：向量轉成歐拉角。
+setFromQuaternion() ：歐拉角轉四元數。
+set() ：給定XYZ來轉歐拉角。
+setFromRotationMatrix() ：矩陣轉歐拉角 。
+
+
+# 四元数（Quaternion）:
+setFromAxisAngle：給定一個方向跟角度，它將依據方向為軸心，旋轉角度
+setFromEuler：由歐拉角轉成四元數。這讓任何Mesh都可以轉成四元數
+setFromRotationMatrix：由旋轉矩陣轉成四元數
+set：由x,y,z轉成四元數
+
+# Vector3 三维向量的类:
+new THREE.Vector3(-2.49, 4.74, -3.01).normalize()
+1. normalize(): 歸一化
+歸一化是一種常見的數學操作，有助於簡化計算、確保方向的一致性,
+如果不使用 normalize 對四元數進行歸一化，可能會導致旋轉方向不正確，尤其是當連續進行多次旋轉時。
 
 
 ### position vs rotation 的差別
@@ -57,3 +79,5 @@ cube.position.set(0,0,3)
 https://blog.twjoin.com/%E8%AA%8D%E8%AD%98-three-js-6eb329e16c97
 
 https://ithelp.ithome.com.tw/articles/10199699
+
+https://ithelp.ithome.com.tw/articles/10293480
